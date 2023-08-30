@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import 'modern-normalize';
-import styled from 'styled-components';
+
 
 export const GlobalStyles = createGlobalStyle`
 html {
