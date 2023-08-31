@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import 'modern-normalize';
 
-
 export const GlobalStyles = createGlobalStyle`
 html {
   box-sizing: border-box;
@@ -22,6 +21,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  color: #394246;
 }
 
 code {
@@ -63,4 +64,3 @@ img {
   max-width: 100%;
   height: auto;
 }`;
-
