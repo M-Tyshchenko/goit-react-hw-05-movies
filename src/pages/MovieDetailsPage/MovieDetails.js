@@ -18,12 +18,19 @@ const MovieDetails = () => {
   const { movieId } = useParams();
 
   const [movie, setMovie] = useState(null);
+  const [genres, setGenres] = useState([]);
 
   useEffect(() => {
     async function getMovieDetails() {
       try {
         const fetchedMovie = await fetchMovieById(movieId);
         setMovie(fetchedMovie);
+        const gotGenres = [];
+        for (const genre of movie.genres) {
+          gotGenres.push(genre.name);
+        }
+        console.log(gotGenres);
+        setGenres(gotGenres);
       } catch {
         toast.error('Oops! Something wrong. Try to reload page');
       }
@@ -51,6 +58,8 @@ const MovieDetails = () => {
                 <p>User score: {movie.vote_average}</p>
                 <SubTitle>Overview</SubTitle>
                 <p>{movie.overview}</p>
+                <SubTitle>Genres</SubTitle>
+                <p>{genres}</p>
               </HeroDescrContainer>
             </Hero>
           </Section>
