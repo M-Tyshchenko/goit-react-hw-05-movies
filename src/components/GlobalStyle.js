@@ -36,7 +36,7 @@ h3,
 h4,
 h5,
 h6,
-p {
+p, hr {
   margin: 0;
 }
 
@@ -53,6 +53,10 @@ ul {
 a {
   color: currentColor;
   text-decoration: none;
+}
+
+a:hover {
+  color: tomato;
 }
 
 button {

@@ -1,6 +1,8 @@
 import { fetchMovies } from 'components/api';
 import { useEffect, useState } from 'react';
-import { toast } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
+import { Container, MovieList, MovieListItem, StyledLink } from './Home.styled';
+// import { NavLink } from 'react-router-dom';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -16,7 +18,7 @@ const Home = () => {
 
         setMovies(films);
       } catch {
-        toast.error('Oops! No movies for this query');
+        toast.error('Oops! Something wrong. Try to reload page');
       }
     }
 
@@ -24,13 +26,16 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <ul>
+    <Container>
+      <MovieList>
         {movies.map(movie => (
-          <li key={movie.id}>{movie.title}</li>
+          <MovieListItem key={movie.id}>
+            <StyledLink to={`/movies/${movie.id}`}>{movie.title}</StyledLink>
+          </MovieListItem>
         ))}
-      </ul>
-    </div>
+      </MovieList>
+      <Toaster />
+    </Container>
   );
 };
 
