@@ -2,6 +2,7 @@ import { Toaster, toast } from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieCast } from 'components/api';
+import { CastList, CastListItem } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -23,7 +24,7 @@ const Cast = () => {
   return (
     cast && (
       <section>
-        <ul>
+        <CastList>
           {cast.map(actor => {
             let actorPhotoSrc = '';
             if (actor.profile_path !== null) {
@@ -31,14 +32,14 @@ const Cast = () => {
             }
             // console.log(actorPhotoSrc);
             return (
-              <li key={actor.id}>
+              <CastListItem key={actor.id}>
                 <img src={`${actorPhotoSrc}`} alt={actor.name} />
                 <h2>{actor.name}</h2>
                 <p>Character: {actor.character}</p>
-              </li>
+              </CastListItem>
             );
           })}
-        </ul>
+        </CastList>
 
         <Toaster />
       </section>
