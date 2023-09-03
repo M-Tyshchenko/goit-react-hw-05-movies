@@ -2,7 +2,7 @@ import { Toaster, toast } from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieReviews } from 'components/api';
-import { ReviewsList } from './Reviews.styled';
+import { ReviewsList, ReviewsListItem, Section } from './Reviews.styled';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -22,19 +22,19 @@ const Reviews = () => {
   }, [movieId]);
 
   return (
-    <section>
+    <Section>
       {reviews && (
         <ReviewsList>
           {reviews.map(review => (
-            <li key={review.id}>
+            <ReviewsListItem key={review.id}>
               <p>{review.content}</p>
-            </li>
+            </ReviewsListItem>
           ))}
         </ReviewsList>
       )}
       {reviews.length === 0 && <p>We don't have any reviews for this movie</p>}
       <Toaster />
-    </section>
+    </Section>
   );
 };
 

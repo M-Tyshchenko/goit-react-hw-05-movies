@@ -18,26 +18,24 @@ const MovieDetails = () => {
   const { movieId } = useParams();
 
   const [movie, setMovie] = useState(null);
-  const [genres, setGenres] = useState([]);
+  const [genres, setGenres] = useState();
 
   useEffect(() => {
     async function getMovieDetails() {
       try {
         const fetchedMovie = await fetchMovieById(movieId);
         setMovie(fetchedMovie);
-        const gotGenres = [];
-        for (const genre of movie.genres) {
-          gotGenres.push(genre.name);
+
+        if (movie) {
+          setGenres(movie.genres.map(genre => genre.name).join(' '));
         }
-        console.log(gotGenres);
-        setGenres(gotGenres);
       } catch {
         toast.error('Oops! Something wrong. Try to reload page');
       }
     }
 
     getMovieDetails();
-  }, [movieId]);
+  }, [movieId, movie]);
 
   return (
     <Container>
@@ -50,7 +48,11 @@ const MovieDetails = () => {
         <>
           <Section>
             <Hero>
-              <img src={movie.poster_path} alt={movie.title} />
+              <img
+                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                alt={movie.title}
+                width={300}
+              />
               <HeroDescrContainer>
                 <Title>
                   {movie.title} ({new Date(movie.release_date).getFullYear()})

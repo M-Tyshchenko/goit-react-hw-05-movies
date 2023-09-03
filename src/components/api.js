@@ -15,7 +15,7 @@ export const fetchMovies = async () => {
       language: 'en-US',
     },
   });
-  console.log(response.data.results);
+  // console.log(response.data.results);
   return response.data.results;
 };
 
@@ -35,8 +35,13 @@ export const fetchMovieCast = async movieId => {
       api_key: apiKey,
     },
   });
+
+  const cast = response.data.cast.filter(
+    person => person.known_for_department === 'Acting'
+  );
   // console.log(response.data.cast);
-  return response.data.cast;
+  console.log(cast);
+  return cast;
 };
 
 export const fetchMovieReviews = async movieId => {
@@ -45,6 +50,6 @@ export const fetchMovieReviews = async movieId => {
       api_key: apiKey,
     },
   });
-  console.log(response.data.results);
+  // console.log(response.data.results);
   return response.data.results;
 };
