@@ -16,3 +16,8 @@ export const ReviewsListItem = styled.li`
   border: 1px solid #ccc;
   border-radius: 4px;
 `;
+
+export const ReviewTitle = styled.h2`
+  font-size: 16px;
+  margin-bottom: 4px;
+`;

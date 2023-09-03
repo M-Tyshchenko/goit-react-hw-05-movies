@@ -2,7 +2,12 @@ import { Toaster, toast } from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieReviews } from 'components/api';
-import { ReviewsList, ReviewsListItem, Section } from './Reviews.styled';
+import {
+  ReviewTitle,
+  ReviewsList,
+  ReviewsListItem,
+  Section,
+} from './Reviews.styled';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -27,6 +32,7 @@ const Reviews = () => {
         <ReviewsList>
           {reviews.map(review => (
             <ReviewsListItem key={review.id}>
+              <ReviewTitle>Author: {review.author}</ReviewTitle>
               <p>{review.content}</p>
             </ReviewsListItem>
           ))}
