@@ -1,7 +1,7 @@
 import { fetchMovies } from 'components/api';
 import { useEffect, useState } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
-import { Container, MovieList, MovieListItem, StyledLink } from './Home.styled';
+import { Container, HomeTitle, MovieListItem, StyledLink } from './Home.styled';
 // import { NavLink } from 'react-router-dom';
 
 const Home = () => {
@@ -27,13 +27,14 @@ const Home = () => {
 
   return (
     <Container>
-      <MovieList>
+      <HomeTitle>Trending today</HomeTitle>
+      <ul>
         {movies.map(movie => (
           <MovieListItem key={movie.id}>
             <StyledLink to={`/movies/${movie.id}`}>{movie.title}</StyledLink>
           </MovieListItem>
         ))}
-      </MovieList>
+      </ul>
       <Toaster />
     </Container>
   );

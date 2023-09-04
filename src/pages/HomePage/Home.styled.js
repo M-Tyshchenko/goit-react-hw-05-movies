@@ -4,13 +4,14 @@ import { NavLink } from 'react-router-dom';
 export const Container = styled.div`
   padding: 20px;
 `;
-
-export const MovieList = styled.ul`
-  /* display: flex;
-  flex-direction: column;
-  gap: 8px; */
-  /* margin-bottom: 16px; */
+export const HomeTitle = styled.h1`
+  font-size: 28px;
+  margin-bottom: 20px;
 `;
+
+// export const MovieList = styled.ul`
+
+// `;
 
 export const StyledLink = styled(NavLink)`
   &.hover {
