@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const Container = styled.div`
+export const Section = styled.section`
   padding: 20px;
 `;
 export const HomeTitle = styled.h1`

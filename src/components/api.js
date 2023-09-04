@@ -8,14 +8,12 @@ axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 
 export const fetchMovies = async () => {
-  // const response = await axios.get('/trending/all/day');
   const response = await axios.get('/trending/all/day', {
     params: {
       api_key: apiKey,
       language: 'en-US',
     },
   });
-  // console.log(response.data.results);
   return response.data.results;
 };
 
