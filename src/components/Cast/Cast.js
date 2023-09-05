@@ -47,7 +47,9 @@ const Cast = () => {
             );
           })}
         </CastList>
-
+        {cast.length === 0 && (
+          <p>We don't have any information about cast for this movie</p>
+        )}
         <Toaster />
       </Section>
     )

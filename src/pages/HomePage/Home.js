@@ -1,4 +1,4 @@
-import { fetchMovies } from 'components/api';
+import { fetchPopularMovies } from 'components/api';
 import { useEffect, useState } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
 import { HomeTitle, MovieListItem, Section, StyledLink } from './Home.styled';
@@ -9,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     async function getMovies() {
       try {
-        const films = await fetchMovies();
+        const films = await fetchPopularMovies();
 
         if (!films.length) {
           throw new Error();
