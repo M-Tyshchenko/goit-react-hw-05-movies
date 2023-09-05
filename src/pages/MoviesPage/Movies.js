@@ -2,8 +2,14 @@ import toast, { Toaster } from 'react-hot-toast';
 import { FormInput, Section, StyledLink } from './Movies.styled';
 import { useEffect, useState } from 'react';
 import { fetchMoviesByQuery } from 'components/api';
+import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // console.log(searchParams);
+  // const movieName = searchParams.get('query') ?? '';
+  // console.log(movieName);
+
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
 
@@ -27,6 +33,11 @@ const Movies = () => {
     getMovies();
   }, [query]);
 
+  // const changeQueryInput = newQuery => {
+  //   // setQuery(newQuery);
+  //   setSearchParams({ query: newQuery });
+  // };
+
   return (
     <>
       <Section>
@@ -38,12 +49,19 @@ const Movies = () => {
               toast.error('Field must not be empty');
               return;
             }
+            // changeQueryInput(event.target.elements.query.value);
             setQuery(event.target.elements.query.value);
 
             event.target.reset();
           }}
         >
-          <FormInput type="text" name="query" placeholder="Search movies" />
+          <FormInput
+            type="text"
+            name="query"
+            // value={movieName}
+            placeholder="Search movies"
+            // onChange={changeQueryInput(query)}
+          />
           <button type="submit">Search</button>
         </form>
       </Section>
