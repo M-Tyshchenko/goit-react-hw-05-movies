@@ -2,7 +2,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { FormInput, Section, StyledLink } from './Movies.styled';
 import { useEffect, useState } from 'react';
 import { fetchMoviesByQuery } from 'components/api';
-import { useSearchParams } from 'react-router-dom';
+// import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
   // const [searchParams, setSearchParams] = useSearchParams();
