@@ -7,7 +7,6 @@ import { useLocation } from 'react-router-dom';
 const Home = () => {
   const [movies, setMovies] = useState([]);
   const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
     async function getMovies() {

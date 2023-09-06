@@ -12,7 +12,6 @@ const Movies = () => {
   const [movies, setMovies] = useState([]);
 
   const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
     if (query === '') return;

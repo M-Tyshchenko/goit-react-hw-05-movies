@@ -21,7 +21,6 @@ const MovieDetails = () => {
   const [genres, setGenres] = useState();
 
   const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
     async function getMovieDetails() {
@@ -42,7 +41,7 @@ const MovieDetails = () => {
 
   return (
     <Container>
-      <BackBtn to={location.state.from}>
+      <BackBtn to={location?.state?.from ?? '/'}>
         <HiMiniArrowLongLeft size="25" />
         Back
       </BackBtn>
