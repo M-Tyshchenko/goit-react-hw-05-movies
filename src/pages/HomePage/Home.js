@@ -2,9 +2,12 @@ import { fetchPopularMovies } from 'components/api';
 import { useEffect, useState } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
 import { HomeTitle, MovieListItem, Section, StyledLink } from './Home.styled';
+import { useLocation } from 'react-router-dom';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
+  const location = useLocation();
+  console.log(location);
 
   useEffect(() => {
     async function getMovies() {
@@ -30,7 +33,9 @@ const Home = () => {
       <ul>
         {movies.map(movie => (
           <MovieListItem key={movie.id}>
-            <StyledLink to={`/movies/${movie.id}`}>{movie.title}</StyledLink>
+            <StyledLink to={`/movies/${movie.id}`} state={{ from: location }}>
+              {movie.title}
+            </StyledLink>
           </MovieListItem>
         ))}
       </ul>

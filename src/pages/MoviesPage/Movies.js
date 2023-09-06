@@ -2,16 +2,17 @@ import toast, { Toaster } from 'react-hot-toast';
 import { FormInput, Section, StyledLink } from './Movies.styled';
 import { useEffect, useState } from 'react';
 import { fetchMoviesByQuery } from 'components/api';
-// import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // console.log(searchParams);
-  // const movieName = searchParams.get('query') ?? '';
-  // console.log(movieName);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryStringValue = searchParams.get('query') ?? '';
 
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(queryStringValue);
   const [movies, setMovies] = useState([]);
+
+  const location = useLocation();
+  console.log(location);
 
   useEffect(() => {
     if (query === '') return;
@@ -27,16 +28,12 @@ const Movies = () => {
         setMovies(films);
       } catch {
         toast.error('Oops! No movies for this query');
+        setMovies([]);
       }
     }
 
     getMovies();
   }, [query]);
-
-  // const changeQueryInput = newQuery => {
-  //   // setQuery(newQuery);
-  //   setSearchParams({ query: newQuery });
-  // };
 
   return (
     <>
@@ -44,24 +41,21 @@ const Movies = () => {
         <form
           onSubmit={event => {
             event.preventDefault();
+            const queryInput = event.target.elements.query.value;
 
-            if (event.target.elements.query.value.trim() === '') {
+            if (queryInput.trim() === '') {
               toast.error('Field must not be empty');
               return;
             }
-            // changeQueryInput(event.target.elements.query.value);
-            setQuery(event.target.elements.query.value);
+
+            setQuery(queryInput);
+
+            setSearchParams({ query: queryInput });
 
             event.target.reset();
           }}
         >
-          <FormInput
-            type="text"
-            name="query"
-            // value={movieName}
-            placeholder="Search movies"
-            // onChange={changeQueryInput(query)}
-          />
+          <FormInput type="text" name="query" placeholder="Search movies" />
           <button type="submit">Search</button>
         </form>
       </Section>
@@ -70,11 +64,14 @@ const Movies = () => {
         <ul>
           {movies.map(movie => (
             <li key={movie.id}>
-              <StyledLink to={`/movies/${movie.id}`}>{movie.title}</StyledLink>
+              <StyledLink to={`/movies/${movie.id}`} state={{ from: location }}>
+                {movie.title}
+              </StyledLink>
             </li>
           ))}
         </ul>
       </Section>
+
       <Toaster />
     </>
   );

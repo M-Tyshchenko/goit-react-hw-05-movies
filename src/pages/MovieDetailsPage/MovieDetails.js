@@ -1,4 +1,4 @@
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { HiMiniArrowLongLeft } from 'react-icons/hi2';
 import { fetchMovieById } from 'components/api';
 import { Toaster, toast } from 'react-hot-toast';
@@ -20,6 +20,9 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const [genres, setGenres] = useState();
 
+  const location = useLocation();
+  console.log(location);
+
   useEffect(() => {
     async function getMovieDetails() {
       try {
@@ -39,7 +42,7 @@ const MovieDetails = () => {
 
   return (
     <Container>
-      <BackBtn to="/">
+      <BackBtn to={location.state.from}>
         <HiMiniArrowLongLeft size="25" />
         Back
       </BackBtn>
