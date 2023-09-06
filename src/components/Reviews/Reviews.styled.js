@@ -7,7 +7,8 @@ export const Section = styled.section`
 
 export const ReviewsList = styled.ul`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
   gap: 20px;
 `;
 
