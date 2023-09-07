@@ -55,7 +55,7 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+a:hover, a:focus, button:hover {
   color: tomato;
 }
 

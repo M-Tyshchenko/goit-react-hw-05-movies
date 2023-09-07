@@ -1,8 +1,15 @@
 import { Toaster, toast } from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { MdOutlineNoPhotography } from 'react-icons/md';
 import { fetchMovieCast } from 'components/api';
-import { ActorName, CastList, CastListItem, Section } from './Cast.styled';
+import {
+  ActorName,
+  CastList,
+  CastListItem,
+  NoImageBox,
+  Section,
+} from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -33,16 +40,21 @@ const Cast = () => {
 
             return (
               <CastListItem key={actor.id}>
-                {actorPhotoSrc && (
+                {actorPhotoSrc ? (
                   <img
                     src={`https://image.tmdb.org/t/p/original${actorPhotoSrc}`}
                     alt={actor.name}
                     width={150}
                   />
+                ) : (
+                  <NoImageBox>
+                    <MdOutlineNoPhotography size="100" />
+                  </NoImageBox>
                 )}
-
-                <ActorName>{actor.name}</ActorName>
-                <p>Character: {actor.character}</p>
+                <div>
+                  <ActorName>{actor.name}</ActorName>
+                  <p>Character: {actor.character}</p>
+                </div>
               </CastListItem>
             );
           })}
@@ -57,3 +69,5 @@ const Cast = () => {
 };
 
 export default Cast;
+
+// MdOutlineNoPhotography;

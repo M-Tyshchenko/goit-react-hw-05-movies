@@ -30,8 +30,4 @@ export const SearchBtn = styled.button`
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   background-color: #fff;
   color: inherit;
-
-  &.hover {
-    color: tomato;
-  }
 `;
