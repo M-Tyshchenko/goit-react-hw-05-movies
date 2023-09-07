@@ -1,5 +1,12 @@
 import toast, { Toaster } from 'react-hot-toast';
-import { FormInput, Section, StyledLink } from './Movies.styled';
+
+import {
+  Form,
+  FormInput,
+  SearchBtn,
+  Section,
+  StyledLink,
+} from './Movies.styled';
 import { useEffect, useState } from 'react';
 import { fetchMoviesByQuery } from 'components/api';
 import { useLocation, useSearchParams } from 'react-router-dom';
@@ -37,7 +44,7 @@ const Movies = () => {
   return (
     <>
       <Section>
-        <form
+        <Form
           onSubmit={event => {
             event.preventDefault();
             const queryInput = event.target.elements.query.value;
@@ -55,8 +62,8 @@ const Movies = () => {
           }}
         >
           <FormInput type="text" name="query" placeholder="Search movies" />
-          <button type="submit">Search</button>
-        </form>
+          <SearchBtn type="submit">Search</SearchBtn>
+        </Form>
       </Section>
 
       <Section>

@@ -1,8 +1,10 @@
+import { Suspense } from 'react';
+import { ThreeDots } from 'react-loader-spinner';
+import { Outlet } from 'react-router-dom';
 import { GlobalStyles } from './GlobalStyle';
 import { Container, HeaderNavigation, NavList, StyledLink } from './App.styled';
-import { Outlet } from 'react-router-dom';
 
-export const AppLayout = () => {
+const AppLayout = () => {
   return (
     <Container>
       <HeaderNavigation>
@@ -15,8 +17,30 @@ export const AppLayout = () => {
           </li>
         </NavList>
       </HeaderNavigation>
-      <Outlet />
+
+      <Suspense
+        fallback={
+          <ThreeDots
+            height="80"
+            width="80"
+            radius="9"
+            color="tomato"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+            wrapperClassName=""
+            visible={true}
+          />
+        }
+      >
+        <Outlet />
+      </Suspense>
+
       <GlobalStyles />
     </Container>
   );
 };
+
+export default AppLayout;
