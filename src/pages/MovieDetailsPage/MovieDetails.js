@@ -1,8 +1,9 @@
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { HiMiniArrowLongLeft } from 'react-icons/hi2';
-import { fetchMovieById } from 'components/api';
 import { Toaster, toast } from 'react-hot-toast';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
+import { ThreeDots } from 'react-loader-spinner';
+import { fetchMovieById } from 'components/api';
 import {
   AdditionalInfoList,
   BackBtn,
@@ -16,10 +17,8 @@ import {
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-
   const [movie, setMovie] = useState(null);
   const [genres, setGenres] = useState();
-
   const location = useLocation();
 
   useEffect(() => {
@@ -74,10 +73,17 @@ const MovieDetails = () => {
             <SubTitle>Additional information</SubTitle>
             <AdditionalInfoList>
               <li>
-                <Link to="cast">Cast</Link>
+                <Link to="cast" state={{ from: location?.state?.from ?? '/' }}>
+                  Cast
+                </Link>
               </li>
               <li>
-                <Link to="reviews">Reviews</Link>
+                <Link
+                  to="reviews"
+                  state={{ from: location?.state?.from ?? '/' }}
+                >
+                  Reviews
+                </Link>
               </li>
             </AdditionalInfoList>
 
@@ -85,8 +91,25 @@ const MovieDetails = () => {
           </Section>
 
           <hr />
-
-          <Outlet />
+          <Suspense
+            fallback={
+              <ThreeDots
+                height="80"
+                width="80"
+                radius="9"
+                color="tomato"
+                ariaLabel="three-dots-loading"
+                wrapperStyle={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+                wrapperClassName=""
+                visible={true}
+              />
+            }
+          >
+            <Outlet />
+          </Suspense>
         </>
       )}
     </Container>

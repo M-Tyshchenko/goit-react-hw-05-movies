@@ -69,5 +69,3 @@ const Cast = () => {
 };
 
 export default Cast;
-
-// MdOutlineNoPhotography;

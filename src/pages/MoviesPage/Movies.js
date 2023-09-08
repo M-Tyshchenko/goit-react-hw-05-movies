@@ -1,5 +1,7 @@
 import toast, { Toaster } from 'react-hot-toast';
-
+import { useEffect, useState } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
+import { fetchMoviesByQuery } from 'components/api';
 import {
   Form,
   FormInput,
@@ -7,9 +9,6 @@ import {
   Section,
   StyledLink,
 } from './Movies.styled';
-import { useEffect, useState } from 'react';
-import { fetchMoviesByQuery } from 'components/api';
-import { useLocation, useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -57,11 +56,14 @@ const Movies = () => {
             setQuery(queryInput);
 
             setSearchParams({ query: queryInput });
-
-            event.target.reset();
           }}
         >
-          <FormInput type="text" name="query" placeholder="Search movies" />
+          {queryStringValue ? (
+            <FormInput type="text" name="query" value={queryStringValue} />
+          ) : (
+            <FormInput type="text" name="query" placeholder="Search movies" />
+          )}
+
           <SearchBtn type="submit">Search</SearchBtn>
         </Form>
       </Section>
