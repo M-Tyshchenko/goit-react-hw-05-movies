@@ -54,15 +54,15 @@ const Movies = () => {
             }
 
             setQuery(queryInput);
-
             setSearchParams({ query: queryInput });
           }}
         >
-          {queryStringValue ? (
-            <FormInput type="text" name="query" value={queryStringValue} />
-          ) : (
-            <FormInput type="text" name="query" placeholder="Search movies" />
-          )}
+          <FormInput
+            type="text"
+            name="query"
+            placeholder="Search movies"
+            // value={queryStringValue ??}
+          />
 
           <SearchBtn type="submit">Search</SearchBtn>
         </Form>
