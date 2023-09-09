@@ -58,10 +58,10 @@ const Movies = () => {
           }}
         >
           <FormInput
-            type="text"
+            type="search"
             name="query"
             placeholder="Search movies"
-            // value={queryStringValue ??}
+            defaultValue={queryStringValue}
           />
 
           <SearchBtn type="submit">Search</SearchBtn>
